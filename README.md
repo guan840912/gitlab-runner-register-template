@@ -91,6 +91,7 @@ Go to runner server run runner docker process or service
     $ mkdir ~/gitlab-runner
     $ vi ~/gitlab-runner/config.toml # copy template and edit token .
     
-    $ docker run -d -v ~/gitlab-runner:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock \
+    $ docker run -d -v ~/gitlab-runner:/etc/gitlab-runner \
+      -v /var/run/docker.sock:/var/run/docker.sock \
       gitlab/gitlab-runner:alpine
 ```
