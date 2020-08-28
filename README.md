@@ -50,3 +50,46 @@
     # <runner token>
     # "3yjprvXXXXXX-whTweGAp
 ```
+![runner page](./api_register_runner.png)
+
+---
+## Here the docker executor template config.toml
+
+### only replace <token> to  `"<runner token>``"`  in `config.toml` 
+```bash
+    concurrent = 3
+    check_interval = 0
+    
+    [session_server]
+      session_timeout = 1800
+    
+    [[runners]]
+      name = "For api docker executor runner template"
+      url = "https://gitlab.com/"
+      token = "<runner token>"
+      executor = "docker"
+      [runners.custom_build_dir]
+      [runners.docker]
+        tls_verify = false
+        image = "alpine:latest"
+        privileged = true
+        disable_entrypoint_overwrite = false
+        oom_kill_disable = false
+        disable_cache = false
+        pull_policy = "if-not-present"
+        cache_dir = "/cache"
+        volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock"]
+        shm_size = 0
+      [runners.cache]
+        [runners.cache.s3]
+        [runners.cache.gcs]
+```
+
+---
+Go to runner server run runner docker process or service 
+```bash
+    $ mkdir ~/gitlab-runner
+    $ vi ~/gitlab-runner/config.toml # copy template and edit token .
+    
+    $ docker run -d -v ~/gitlab-runner:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:alpine
+```
