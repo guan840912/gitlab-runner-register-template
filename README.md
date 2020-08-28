@@ -55,7 +55,7 @@
 ---
 ## Here the docker executor template config.toml
 
-### only replace <token> to  `"<runner token>``"`  in `config.toml` 
+### only replace <token> to  `"<runner token>"`  in `config.toml` 
 ```bash
     concurrent = 3
     check_interval = 0
