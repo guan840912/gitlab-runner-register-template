@@ -95,3 +95,10 @@ Go to runner server run runner docker process or service
       -v /var/run/docker.sock:/var/run/docker.sock \
       gitlab/gitlab-runner:alpine
 ```
+
+
+# Delete Gitlab runner curl
+```bash
+# token = config.toml token .
+curl --request DELETE "https://gitlab.com/api/v4/runners" --form "token=$token"
+```
